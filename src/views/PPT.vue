@@ -7,7 +7,6 @@
           <v-btn flat v-on="on">
             <v-icon color="primary">cloud_upload</v-icon>&nbsp;上传PPT
           </v-btn>
-         
         </template>
         <v-card>
           <v-card-title>
@@ -50,20 +49,20 @@
                   </v-layout>
                 </v-flex>
                 <v-flex xs12>
-                    <v-text-field label="ppt地址*" required v-model="ppt_address"></v-text-field>
+                  <v-text-field label="ppt地址*" required v-model="ppt_address"></v-text-field>
                 </v-flex>
-              <v-btn flat @click="handlerPPT">
-                    <v-icon color="primary">cloud_upload</v-icon>&nbsp;上传PPT文件
-                  </v-btn>
+                <v-btn flat @click="handlerPPT">
+                  <v-icon color="primary">cloud_upload</v-icon>&nbsp;上传PPT文件
+                </v-btn>
 
-                  <input
-                    type="file"
-                    id="uploadppt"
-                    ref="uploadppt"
-                    @change="changePPT"
-                    accept=".ppt, .pptx"
-                    v-show="false"
-                  />
+                <input
+                  type="file"
+                  id="uploadppt"
+                  ref="uploadppt"
+                  @change="changePPT"
+                  accept=".ppt, .pptx"
+                  v-show="false"
+                />
               </v-layout>
             </v-container>
             <small>*indicates required field</small>
@@ -88,10 +87,7 @@
       </v-btn-toggle>
     </v-toolbar>
     <v-divider></v-divider>
-    <v-dialog
-      v-model="dialog_editor"
-      max-width="800"
-    >
+    <v-dialog v-model="dialog_editor" max-width="800">
       <v-card>
         <v-card-title>
           <span class="headline">PPT资源 编辑</span>
@@ -109,15 +105,13 @@
                 <v-text-field label="图片*" required v-model="ppt_editot.photo"></v-text-field>
               </v-flex>
               <v-flex xs12>
-                <v-text-field label="文件*"  required v-model="ppt_editot.file"></v-text-field>
+                <v-text-field label="文件*" required v-model="ppt_editot.file"></v-text-field>
               </v-flex>
               <v-flex xs12>
-                <v-textarea label="图集*"  required v-model="ppt_editot.short_photos" auto-grow  ></v-textarea>
+                <v-textarea label="图集*" required v-model="ppt_editot.short_photos" auto-grow></v-textarea>
               </v-flex>
-              
             </v-layout>
           </v-container>
-          
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
@@ -141,7 +135,7 @@
                           alt
                           v-if="isImage(item)"
                           aspect-ratio="1"
-                          center 
+                          center
                         ></v-img>
                         <v-icon class="mx-auto" size="135" v-else>insert_drive_file</v-icon>
                       </v-responsive>
@@ -185,11 +179,11 @@
 </template>
 
 <script>
-import Bytes from "bytes"
-import { getFileMenu } from "@/api/file"
-import { GetPPTs,PPTDetail } from "@/api/toGet.js"
-import VuePerfectScrollbar from "vue-perfect-scrollbar"
-import { Upload2, AddPPT,EditorPPT } from "@/api/toPost.js"
+import Bytes from "bytes";
+import { getFileMenu } from "@/api/file";
+import { GetPPTs, PPTDetail } from "@/api/toGet.js";
+import VuePerfectScrollbar from "vue-perfect-scrollbar";
+import { Upload2, AddPPT, EditorPPT } from "@/api/toPost.js";
 export default {
   components: {
     VuePerfectScrollbar
@@ -205,7 +199,7 @@ export default {
     tag: "",
     title: "",
     dialog: false,
-    dialog_editor:false,
+    dialog_editor: false,
     ppt_address: "",
     size: "lg",
     view: "grid",
@@ -214,161 +208,163 @@ export default {
     },
     imageMime: ["image/jpeg", "image/png", "image/svg+xml"],
     files: [],
-    ppt_editot:{
-      id:0,
-      title:"",
-      tag:"",
-      photo:"",
-      file:"",
-      short_photos:""
+    ppt_editot: {
+      id: 0,
+      title: "",
+      tag: "",
+      photo: "",
+      file: "",
+      short_photos: ""
     }
   }),
   computed: {
     mediaMenu() {
-      return getFileMenu
+      return getFileMenu;
     }
   },
   created() {
-    this.getfiles()
+    this.getfiles();
   },
 
   methods: {
     getfiles() {
       GetPPTs()
         .then(res => {
-          this.files = res.data
+          this.files = res.data;
         })
         .catch(error => {
           this.$message({
             message: error,
             type: "error"
-          })
-        })
+          });
+        });
     },
     imgaddress(image) {
-      if (!image) return ""
+      if (!image) return "";
       if (image.toString().startsWith("http")) {
-        return image
+        return image;
       } else {
-        return process.env.VUE_APP_CDN + image
+        return process.env.VUE_APP_CDN + image;
       }
     },
-    isImage(file) {
-      return true
-      return this.imageMime.includes(file.photo_address)
+    isImage() {
+      return true;
+      // return this.imageMime.includes(file.photo_address)
     },
     mimeIcons(file) {
-      return this.imageMime.includes(file.photo_address) ? "image" : "insert_drive_file"
+      return this.imageMime.includes(file.photo_address)
+        ? "image"
+        : "insert_drive_file";
     },
     showDetail(id) {
-
-      PPTDetail({ppt_id:id})
-      .then(res=>{
-          this.ppt_editot = res.data
-      })
-      .catch(error=>{
-        this.$message({
-          message:"请求错误",
-          type: "error"
+      PPTDetail({ ppt_id: id })
+        .then(res => {
+          this.ppt_editot = res.data;
         })
-      })
+        .catch(error => {
+          this.$message({
+            message: "请求错误",
+            type: "error"
+          });
+          console.log(error);
+        });
       this.dialog_editor = true;
-
     },
     fileSize(number) {
-      return Bytes.format(number)
+      return Bytes.format(number);
     },
     formateDate(string) {
-      return string ? new Date(string).toLocaleDateString() : ""
+      return string ? new Date(string).toLocaleDateString() : "";
     },
     computeFileImage(file) {
-      return this.isImage(file) ? file.path : "/static/icon/file_empty.svg"
+      return this.isImage(file) ? file.path : "/static/icon/file_empty.svg";
     },
     handlerCilik() {
-      let uploadbtn = this.$refs.upload
-      uploadbtn.click()
+      let uploadbtn = this.$refs.upload;
+      uploadbtn.click();
     },
-    handlerPPT(){
-      let uploadbtn = this.$refs.uploadppt
-      uploadbtn.click()
+    handlerPPT() {
+      let uploadbtn = this.$refs.uploadppt;
+      uploadbtn.click();
     },
     async changeimg(e) {
-      let formData = new FormData()
-      formData.append("file", e.target.files[0])
+      let formData = new FormData();
+      formData.append("file", e.target.files[0]);
       Upload2(formData)
         .then(res => {
-          this.ppt_img = res.data[0]
+          this.ppt_img = res.data[0];
         })
         .catch(error => {
           this.$message({
             message: "上传异常",
             type: "error"
-          })
-        })
+          });
+          console.log(error);
+        });
     },
     async changePPT(e) {
-      let formData = new FormData()
-      formData.append("file", e.target.files[0])
+      let formData = new FormData();
+      formData.append("file", e.target.files[0]);
       Upload2(formData)
         .then(res => {
-          this.ppt_address= res.data[0]
+          this.ppt_address = res.data[0];
         })
         .catch(error => {
           this.$message({
-            message: "上传异常",
+            message: "上传异常" + error.toString(),
             type: "error"
-          })
-        })
+          });
+        });
     },
-    upload_ppt(){
-        let datas = {
-            title:this.title,
-            tag:this.tag,
-            photo:this.ppt_img,
-            file:this.ppt_address
-        }
-        AddPPT(datas)
-        .then(res=>{
-            this.files.push(res.data)
-            this.$message({
-                message:"上传成功",
-                "type":'success'
-            })
-            this.title=""
-            this.tag= ""
-            this.ppt_img = ""
-            this.ppt_address = ""
-        })
-        .catch(error=>{
-            console.log(error)
-            this.$message({
-                message:"未知错误",
-                "type":"error"
-            })
-        })
-        this.dialog = false
-    },
-    eddppt(){
-      EditorPPT(this.ppt_editot)
-      .then(res=>{
-        if (res.code == 200){
+    upload_ppt() {
+      let datas = {
+        title: this.title,
+        tag: this.tag,
+        photo: this.ppt_img,
+        file: this.ppt_address
+      };
+      AddPPT(datas)
+        .then(res => {
+          this.files.push(res.data);
           this.$message({
-            message:"修改成功",
-            type :"success"
-          })
-        }
-      })
-      .catch(error=>{
-        console.log(error)
-        this.$message({
-            message:"未知错误",
-            type :"error"
-          })
-      })
-      this.dialog_editor = false
+            message: "上传成功",
+            type: "success"
+          });
+          this.title = "";
+          this.tag = "";
+          this.ppt_img = "";
+          this.ppt_address = "";
+        })
+        .catch(error => {
+          console.log(error);
+          this.$message({
+            message: "未知错误",
+            type: "error"
+          });
+        });
+      this.dialog = false;
+    },
+    eddppt() {
+      EditorPPT(this.ppt_editot)
+        .then(res => {
+          if (res.code == 200) {
+            this.$message({
+              message: "修改成功",
+              type: "success"
+            });
+          }
+        })
+        .catch(error => {
+          console.log(error);
+          this.$message({
+            message: "未知错误",
+            type: "error"
+          });
+        });
+      this.dialog_editor = false;
     }
   }
-}
+};
 </script>
 <style lang="stylus" scoped>
 .media {

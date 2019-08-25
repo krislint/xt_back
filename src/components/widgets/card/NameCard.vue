@@ -1,6 +1,6 @@
 <template>
   <div class="name-card">
-    <v-card :color="color" ref="card" :dark="dark" :img="cardBgImage">
+    <v-card color="orange" ref="card" dark :img="cardBgImage">
       <v-responsive v-if="showTopNav">
         <v-layout row justify-space-between class="ma-0">
           <v-flex xs2>
@@ -13,28 +13,28 @@
       </v-responsive>
       <v-card-text>
         <div class="layout ma-0 align-center" :class="computeCardLayout">
-          <v-avatar :size="computeAvatarSize" color="primary">
-            <img :src="avatar.src" :alt="name" v-if="showAvatar" />
-            <span v-else class="white--text headline">{{ name.charAt(0) }}</span>
+          <v-avatar :size="96" color="primary">
+            <img :src="$imageaddress(photo)" :alt="name" v-if="showAvatar" />
+            <span  v-else class="white--text headline">{{ name }}</span>
           </v-avatar>
           <div class="flex" :class="computeTextAlgin">
-            <div class="subheading">{{ name }}</div>
-            <span class="caption">{{ jobTitle }}</span>
+            <div class="subheading">{{ teacher.name }}</div>
+            <span class="caption">{{ name }}</span>
           </div>
         </div>
       </v-card-text>
     </v-card>
-    <v-bottom-nav :value="true" color="transparent" :height="64" v-if="showBottomNav">
+    <v-bottom-nav :value="true" color="transparent" :height="64" >
       <v-btn flat color="teal" value="recent">
-        <span>Recent</span>
+        <span>最近课程</span>
         <v-icon>history</v-icon>
       </v-btn>
       <v-btn flat color="teal" value="favorites">
-        <span>Favorites</span>
-        <v-icon>favorite</v-icon>
+        <span>学生列表</span>
+        <v-icon>supervised_user_circle</v-icon>
       </v-btn>
       <v-btn flat color="teal" value="nearby">
-        <span>Nearby</span>
+        <span>开课地点</span>
         <v-icon>place</v-icon>
       </v-btn>
     </v-bottom-nav>
@@ -44,40 +44,25 @@
 <script>
 export default {
   props: {
-    name: {
+    description: {
       type: String,
       default: ""
     },
-    avatar: {
+    teacher: {
       type: Object,
-      default: null
+      default: ()=>{return {}}
     },
-    jobTitle: {
+    photo:{
       type: String,
       default: ""
     },
-    cardBgImage: {
-      type: String
-    },
-    color: {
+    name:{
       type: String,
       default: ""
     },
-    dark: {
-      type: Boolean,
-      default: false
-    },
-    bottomNav: {
-      type: Boolean,
-      default: false
-    },
-    topNav: {
-      type: Boolean,
-      default: false
-    },
-    mini: {
-      type: Boolean,
-      default: false
+    mini:{
+      type:Boolean,
+      default:true
     }
   },
   data: () => ({}),
@@ -93,7 +78,7 @@ export default {
       return this.mini ? "48" : "96"
     },
     showAvatar() {
-      return this.avatar !== null && this.avatar.src
+      return this.photo !== null && this.photo.trim()
     },
 
     showBottomNav() {

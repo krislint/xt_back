@@ -43,18 +43,26 @@ module.exports = {
     }
   },
 
-  devServer: {
+  // devServer: {
     
-    // proxy: {
-    //   '/api': {
-    //     target: 'https://localhost/api/v1',
-    //     ws: false,
-    //     changeOrigin: true
-    //   },
+  //   // proxy: {
+  //   //   '/api': {
+  //   //     target: 'https://localhost/api/v1',
+  //   //     ws: false,
+  //   //     changeOrigin: true
+  //   //   },
 
-    // }
-  },
-
+  //   // }
+  // },
+  devServer: {
+    open: process.platform === 'darwin',
+    host: '0.0.0.0',
+    port: 8080,
+    https: false,
+    hotOnly: false,
+    proxy: null, // 设置代理
+    before: app => {}
+},
   assetsDir: 'static',
   runtimeCompiler: true
 }

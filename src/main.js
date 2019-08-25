@@ -10,6 +10,15 @@ import Message from "vue-m-message"
 
 Vue.use(Message) // will mount `Vue.prototype.$message
 Vue.config.productionTip = false
+function imgaddress(image) {
+  if (!image) return ""
+  if (image.toString().startsWith("http")) {
+    return image
+  } else {
+    return process.env.VUE_APP_CDN + image
+  }
+}
+Vue.prototype.$imageaddress = imgaddress
 
 new Vue({
   router,

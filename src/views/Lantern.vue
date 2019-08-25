@@ -1,12 +1,12 @@
 <template>
-  <v-container grid-list-l fluid>
-    <v-layout row wrap justify-center>
+  <v-container grid-list-x1 fluid>
+    <v-layout row wrap >
       <v-flex xs11>
         <v-carousel >
           <v-carousel-item v-for="item in items" :key="item.photo" :src="imgaddress(item.photo)"></v-carousel-item>
         </v-carousel>
       </v-flex>
-      <v-flex>
+      <v-flex xs12 offset-xs5>
         <v-btn flat @click="handlerCilik">
           <v-icon color="primary">cloud_upload</v-icon>&nbsp;Upload
         </v-btn>
@@ -38,11 +38,15 @@
       <v-flex xs12 style="margin-top:50px">
         <v-select :items="cities" label="城市" item-text="name" item-value="id" v-model="city_id"></v-select>
       </v-flex>
-      <v-flex xs12 v-for="(item,i) in items" :key="item.photo">
+      
+      <v-flex lg4 sm6 xs12 v-for="(item,i) in items" :key="item.photo" style="padding:12px">
+        <v-card  >
+          <v-card-text>
         <v-text-field v-model="items[i].photo" label="轮播图" placeholder="轮播图地址"></v-text-field>
         <v-select :items="ariticles" label="文章" placeholder="文章" v-model="items[i].article_id" item-text="title" item-value="id"></v-select>
+        </v-card-text>
+        </v-card>
       </v-flex>
-
       <v-flex xs12>
         <v-btn color="orange darken-2" dark @click="addlantern">
           添加
@@ -112,7 +116,7 @@ export default {
       }
     },
     addlantern() {
-      this.items.push({ article_id: 1, photo: "",id:0 })
+      this.items.push({ article_id: 0, photo: "",id:0 })
     },
     savelanterns() {
       let datas = {

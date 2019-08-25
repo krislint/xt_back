@@ -27,12 +27,18 @@ const Menu = [
     icon: "fa fas far fa-user"
   },
   {
+    title: "评论",
+    group: "应用",
+    name: "Comment",
+    // target: "_self",
+    icon: "fa fas fa-comments"
+  },
+  {
     title: "统计",
     group: "widgets",
     component: "widgets",
     icon: "widgets",
     items: [
-      { name: "social", title: "Social", component: "SocialWidget" },
       {
         name: "statistic",
         title: "Statistic",

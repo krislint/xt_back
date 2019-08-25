@@ -81,3 +81,17 @@ export function ShortAriticle(datas) {
     params: datas
   })
 }
+export function GetComments() {
+  return request({
+    url: "/admin/GetComments",
+    method: "get"
+  })
+}
+
+export function GetUserInfo(datas) {
+  return request({
+    url: "/admin/GetUserInfo",
+    method: "get",
+    params:datas
+  })
+}

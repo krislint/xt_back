@@ -16,7 +16,7 @@
           <mini-statistic icon="fa fa-instagram" title="50+" sub-title="Shots" color="purple"> </mini-statistic>
         </v-flex>
         <!-- mini statistic  end -->
-        <v-flex lg8 sm12 xs12>
+        <!-- <v-flex lg8 sm12 xs12>
           <v-widget title="Site Traffic" content-bg="white">
             <v-btn icon slot="widget-header-action">
               <v-icon class="text--secondary">refresh</v-icon>
@@ -76,12 +76,12 @@
               </e-chart>
             </div>
           </v-widget>
-        </v-flex>
+        </v-flex> -->
         <!-- social/weather card start -->
         <v-flex lg4 sm12 xs12>
           <profile-card> </profile-card>
         </v-flex>
-        <v-flex lg4 sm12 xs12>
+        <!-- <v-flex lg4 sm12 xs12>
           <box-chart
             card-color="indigo"
             title="Trending"
@@ -104,7 +104,7 @@
             type="area"
           >
           </box-chart>
-        </v-flex>
+        </v-flex> -->
         <!-- statistic section -->
         <v-flex lg4 sm12 xs12>
           <linear-statistic title="Sales" sub-title="Sales increase" icon="trending_up" color="success" :value="15">
@@ -150,10 +150,10 @@
           </circle-statistic>
         </v-flex>
         <!-- acitivity/chat widget -->
-        <v-flex lg6 sm12 xs12>
+        <!-- <v-flex lg6 sm12 xs12>
           <chat-window height="308px"></chat-window>
-        </v-flex>
-        <v-flex lg6 sm12 xs12>
+        </v-flex> -->
+        <!-- <v-flex lg6 sm12 xs12>
           <v-widget title="Activities" content-bg="white">
             <div slot="widget-content">
               <ol class="timeline timeline-activity timeline-point-sm timeline-content-right">
@@ -169,7 +169,7 @@
               </ol>
             </div>
           </v-widget>
-        </v-flex>
+        </v-flex> -->
         <v-flex lg7 sm12 xs12>
           <plain-table></plain-table>
         </v-flex>
@@ -183,25 +183,17 @@
 
 <script>
 import API from "@/api"
-import EChart from "@/components/chart/echart"
 import MiniStatistic from "@/components/widgets/statistic/MiniStatistic"
 import ProfileCard from "@/components/widgets/card/ProfileCard"
 import PlainTable from "@/components/widgets/list/PlainTable"
 import PlainTableOrder from "@/components/widgets/list/PlainTableOrder"
-import VWidget from "@/components/VWidget"
 import Material from "vuetify/es5/util/colors"
-import VCircle from "@/components/circle/VCircle"
-import BoxChart from "@/components/widgets/chart/BoxChart"
 import CircleStatistic from "@/components/widgets/statistic/CircleStatistic"
 import LinearStatistic from "@/components/widgets/statistic/LinearStatistic"
 export default {
   components: {
-    VWidget,
     MiniStatistic,
-    VCircle,
     ProfileCard,
-    EChart,
-    BoxChart,
     CircleStatistic,
     LinearStatistic,
     PlainTable,
@@ -307,7 +299,7 @@ export default {
       return API.getPost(3)
     },
     siteTrafficData() {
-      return API.getMonthVisit
+      return []
     },
     locationData() {
       return API.getLocation

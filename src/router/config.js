@@ -114,6 +114,21 @@ export const protectedRoute = [
       }
     ]
   },
+  {
+    path: "/Comment",
+    name: "Comment",
+    component: DefaultLayout,
+    meta: { title: "评论", icon: "widgets", group: "advance" },
+    redirect: "/Comment/Admin",
+    children: [
+      {
+        path: "/Comment/Admin",
+        name: "CommentAdmin",
+        meta: { title: "评论管理" },
+        component: () => import(/* webpackChunkName: "chart-widget" */ "@/views/Comment.vue")
+      }
+    ]
+  },
   //widgets
   {
     path: "/widgets",
@@ -134,12 +149,6 @@ export const protectedRoute = [
         component: () => import(/* webpackChunkName: "list-widget" */ "@/views/widgets/List.vue")
       },
       {
-        path: "/widgets/social",
-        name: "SocialWidget",
-        meta: { title: "Social Widget" },
-        component: () => import(/* webpackChunkName: "social-widget" */ "@/views/widgets/Social.vue")
-      },
-      {
         path: "/widgets/statistic",
         name: "StatisticWidget",
         meta: { title: "Statistic Widget" },
@@ -151,7 +160,7 @@ export const protectedRoute = [
   //media
   {
     path: "/Media",
-    meta: { title: "Media", group: "媒体", icon: "media" },
+    meta: { title: "Media", group: "media", icon: "media" },
     name: "Media",
     component: DefaultLayout,
     redirect: "/Media/photo",

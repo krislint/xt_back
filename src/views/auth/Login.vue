@@ -81,7 +81,7 @@ export default {
         if (res.code == 200 && res.data.role.trim() == "admin"){
           this.$router.push("/dashboard")
           this.$store.commit('login',res.data)
-          console.log(this.$store.state.userinfo)
+          // console.log(this.$store.state.userinfo)
           this.$message({
             message: "登入成功",
             type: "success"
@@ -92,8 +92,8 @@ export default {
               message:"请用管理员账户登入",
               type:"info"
             })
-            this.loading = false
           }
+          this.loading = false
       }).catch(error=>{
         // this.$message({
         //   message: "登入异常",
@@ -103,6 +103,13 @@ export default {
      
     
     }
+  },
+  created(){
+    // console.log(this.$store.state)
+    if (this.$store.state.islogin){
+      this.$router.replace("/dashboard")
+    }
+    
   }
 }
 </script>

@@ -62,3 +62,11 @@ export function SetLantern(datas) {
     data: datas
   })
 }
+
+export function DeleteComment(datas) {
+  return request({
+    url: "/admin/delete_comment",
+    method: "POST",
+    data: datas
+  })
+}
