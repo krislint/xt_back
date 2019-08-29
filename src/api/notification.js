@@ -1,29 +1,22 @@
 export default [
   {
-    title: "New user registered",
+    title: "新用户注册",
     color: "light-green",
     icon: "account_circle",
-    timeLabel: "Just now"
+    timeLabel: "刚刚"
   },
   { divider: true, inset: true },
   {
-    title: "New order received",
+    title: "收到一条新评论",
     color: "light-blue",
-    icon: "shopping_cart",
-    timeLabel: "2 min ago"
+    icon: "email",
+    timeLabel: "2 分钟前"
   },
   { divider: true, inset: true },
   {
-    title: "New payment made",
+    title: "新班级创建",
     color: "cyan",
     icon: "payment",
-    timeLabel: "24 min ago"
-  },
-  { divider: true, inset: true },
-  {
-    title: "New message from Michael",
-    color: "red",
-    icon: "email",
-    timeLabel: "1 hour ago"
+    timeLabel: "24 分钟前"
   }
 ]

@@ -1,5 +1,20 @@
 <template>
   <v-card class="post-card">
+    <v-dialog v-model="dialog" max-width="290">
+        <v-card>
+          <v-card-title class="headline">Confirm</v-card-title>
+
+          <v-card-text>是否确认删除该文章</v-card-text>
+
+          <v-card-actions>
+            <v-spacer></v-spacer>
+
+            <v-btn color="green darken-1" flat="flat" @click="dialog = false">取消</v-btn>
+
+            <v-btn color="green darken-1" flat="flat" @click="handleDelete">确认</v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
     <v-toolbar color="transparent" flat dense card>
       <v-toolbar-title class="subheading ft-200">最近发布</v-toolbar-title>
       <v-spacer></v-spacer>
@@ -27,20 +42,28 @@
                   <span>{{ item.author }}</span>
                   <time class="px-2">{{ item.create_time }}</time>
                 </div>
-                <div class="social">
+                <v-layout class="social" row>
+                  <v-flex xs1>
                   <a @click="handleThumb" class="grey--text text--darken-1">
                     <v-icon small>thumb_up</v-icon>
                     <small>{{item.likeNum}}+</small>
                   </a>
+                  </v-flex>
+                <v-flex xs2>
                   <a @click="handleComment" class="grey--text text--darken-1 mx-3">
                     <v-icon small>mode_comment</v-icon>
-                    <small>12+</small>
+                    12+
                   </a>
+                </v-flex>
+                <v-flex xs1>
                   <a @click="handleFavorite" class="grey--text text--darken-1">
                     <v-icon small>favorite</v-icon>
                     <small>50+</small>
                   </a>
-                </div>
+                </v-flex>
+                <v-flex xs1>
+                  <v-icon small color='red'  @click.native.stop.prevent="dialog=true;delete_id=item.id">delete</v-icon>删除</v-flex>
+                </v-layout>
               </div>
             </div>
           </router-link>
@@ -51,7 +74,14 @@
 </template>
 
 <script>
+import {DeleteAriticle} from "@/api/toPost"
 export default {
+  data(){
+    return {
+      dialog:false,
+      delete_id :0
+    }
+  },
   props: {
     items: { type: [Array, Object] }
   },
@@ -78,6 +108,23 @@ export default {
     },
     handleFavorite() {
       // implement your own method here
+    },
+    handleDelete(){
+      DeleteAriticle({ariticle_id:this.delete_id})
+      .then(res=>{
+        if (res.code==200){
+          this.$emit('delarticle',this.delete_id)
+          this.$message({
+            message:"删除成功",
+            type:"success"
+          })
+        }
+        this.dialog= false
+      })
+      .catch(error=>{
+        this.dialog= false
+        console.log(error)
+      })
     }
   }
 }
@@ -93,6 +140,9 @@ export default {
 .post--desc{
   max-height: 100px;
   overflow: hidden;
+}
+.post--content{
+  min-width:75%
 }
 .post--item a {
   text-decoration: none;

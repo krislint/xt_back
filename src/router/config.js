@@ -37,13 +37,13 @@ export const protectedRoute = [
   {
     path: "/",
     component: DefaultLayout,
-    meta: { title: "Home", group: "apps", icon: "" },
+    meta: { title: "主页", group: "apps", icon: "" },
     redirect: "/auth",
     children: [
       {
         path: "/dashboard",
         name: "Dashboard",
-        meta: { title: "Home", group: "apps", icon: "dashboard", needlogin: true },
+        meta: { title: "主页", group: "apps", icon: "dashboard", needlogin: true },
         component: () => import(/* webpackChunkName: "dashboard" */ "@/views/Dashboard.vue")
       },
 
@@ -133,26 +133,14 @@ export const protectedRoute = [
   {
     path: "/widgets",
     component: DefaultLayout,
-    meta: { title: "Widget", icon: "widgets", group: "advance" },
+    meta: { title: "统计", icon: "widgets", group: "advance" },
     redirect: "/widgets/chart",
     children: [
       {
         path: "/widgets/chart",
         name: "ChartWidget",
-        meta: { title: "Chart Widget" },
+        meta: { title: "图表" },
         component: () => import(/* webpackChunkName: "chart-widget" */ "@/views/widgets/Chart.vue")
-      },
-      {
-        path: "/widgets/list",
-        name: "ListWidget",
-        meta: { title: "List Widget" },
-        component: () => import(/* webpackChunkName: "list-widget" */ "@/views/widgets/List.vue")
-      },
-      {
-        path: "/widgets/statistic",
-        name: "StatisticWidget",
-        meta: { title: "Statistic Widget" },
-        component: () => import(/* webpackChunkName: "statistic-widget" */ "@/views/widgets/Statistic.vue")
       }
     ]
   },

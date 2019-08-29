@@ -49,7 +49,7 @@
               flat
               solo
               prepend-icon="search"
-              placeholder="Type something"
+              placeholder="搜索"
               v-model="search"
               hide-details
               class="hidden-sm-and-down"

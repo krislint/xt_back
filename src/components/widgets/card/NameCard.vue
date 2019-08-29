@@ -1,6 +1,6 @@
 <template>
   <div class="name-card">
-    <v-card color="orange" ref="card" dark :img="cardBgImage">
+    <v-card color="orange" ref="card" dark>
       <v-responsive v-if="showTopNav">
         <v-layout row justify-space-between class="ma-0">
           <v-flex xs2>
@@ -15,16 +15,17 @@
         <div class="layout ma-0 align-center" :class="computeCardLayout">
           <v-avatar :size="96" color="primary">
             <img :src="$imageaddress(photo)" :alt="name" v-if="showAvatar" />
-            <span  v-else class="white--text headline">{{ name }}</span>
+            <span v-else class="white--text headline">{{ name }}</span>
           </v-avatar>
           <div class="flex" :class="computeTextAlgin">
             <div class="subheading">{{ teacher.name }}</div>
             <span class="caption">{{ name }}</span>
+            <div class="description">{{description}}</div>
           </div>
         </div>
       </v-card-text>
     </v-card>
-    <v-bottom-nav :value="true" color="transparent" :height="64" >
+    <v-bottom-nav :value="true" color="transparent" :height="64">
       <v-btn flat color="teal" value="recent">
         <span>最近课程</span>
         <v-icon>history</v-icon>
@@ -50,52 +51,67 @@ export default {
     },
     teacher: {
       type: Object,
-      default: ()=>{return {}}
+      default: () => {
+        return {};
+      }
     },
-    photo:{
+    photo: {
       type: String,
       default: ""
     },
-    name:{
+    name: {
       type: String,
       default: ""
     },
-    mini:{
-      type:Boolean,
-      default:true
+    mini: {
+      type: Boolean,
+      default: true
     }
   },
   data: () => ({}),
 
   computed: {
     computeCardLayout() {
-      return this.mini ? "row" : "column"
+      return this.mini ? "row" : "column";
     },
     computeTextAlgin() {
-      return this.mini ? "text-sm-right" : "text-sm-center"
+      return this.mini ? "text-sm-right" : "text-sm-center";
     },
     computeAvatarSize() {
-      return this.mini ? "48" : "96"
+      return this.mini ? "48" : "96";
     },
     showAvatar() {
-      return this.photo !== null && this.photo.trim()
+      return this.photo !== null && this.photo.trim();
     },
 
     showBottomNav() {
-      return this.mini === false && this.bottomNav
+      return this.mini === false && this.bottomNav;
     },
 
     showTopNav() {
-      return this.mini === false && this.topNav
+      return this.mini === false && this.topNav;
     }
   },
 
   methods: {}
-}
+};
 </script>
 
 <style lang="stylus" scoped>
-.caption, .subheading {
-  font-weight:200;
+ .subheading {
+  font-weight: 200;
+}
+.caption{
+  font-size:18px !important;
+  margin 20px 0 15px
+
+}
+.description {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  font-size:13px;
 }
 </style>

@@ -1,3 +1,4 @@
+/* eslint-disable */
 <template>
 
       <Editor
@@ -26,7 +27,7 @@ export default {
       init: {
         // height:700,
         branding: false,
-        language_url: `/tinymce/langs/zh_CN.js`,
+        language_url: `/static/tinymce/langs/zh_CN.js`,
         language: "zh_CN",
         plugins: "lists image media table wordcount preview autoresize",
         toolbar:

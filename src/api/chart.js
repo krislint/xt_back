@@ -12,24 +12,64 @@ const monthVisitData = shortMonth.map(m => {
 const campaignData = [
   {
     value: 335,
-    name: "Website"
+    name: "温州"
   },
   {
     value: 310,
-    name: "Email"
-  },
-  {
-    value: 234,
-    name: "Ads"
+    name: "绍兴"
   },
   {
     value: 135,
-    name: "Video"
+    name: "杭州"
   },
   {
-    value: 1548,
-    name: "Search"
+    value: 548,
+    name: "台州"
+  },
+  {
+    value: 248,
+    name: "衢州"
+  },
+  {
+    value:354,
+    name : "宁波"
+  },
+  {
+    name:'湖州',
+    value:245
+  },
+  {
+    name:'丽水',
+    value:143
+  },
+  {
+    name:'舟山',
+    value:242
+  },
+  {
+    name:'金华',
+    value:284
+  },
+  {
+    name:'嘉兴',
+    value:314
   }
+  
+]
+const pageviewData=[
+  {
+    name:'视频赏析',
+    value:79
+  },
+  {
+    name:'图集欣赏',
+    value:124
+  },
+  {
+    name:'PPT下载',
+    value:145
+  },
+  
 ]
 const locationData = [
   {
@@ -90,4 +130,4 @@ const SinData = range(1, 12).map(i => {
   }
 })
 
-export { monthVisitData, campaignData, locationData, StackData, SinData }
+export { monthVisitData, campaignData, locationData, StackData, SinData,pageviewData }

@@ -19,12 +19,12 @@
       <v-flex lg12>
         <v-card>
           <v-card-title>
-            Nutrition
+            评论
             <v-spacer></v-spacer>
             <v-text-field
               v-model="search"
               append-icon="search"
-              label="Search"
+              label="搜索"
               single-line
               hide-details
             ></v-text-field>
@@ -44,6 +44,7 @@
               <td>{{ props.item.user_id || '未注册' }}</td>
               <td>{{ props.item.name }}</td>
               <td>{{ props.item.content }}</td>
+              <td>{{props.item.article}}</td>
               <td>{{ props.item.time }}</td>
               <td>
                 <v-btn depressed outline icon fab dark color="primary" small>
@@ -63,9 +64,9 @@
                 </v-btn>
               </td>
             </template>
-            <template v-slot:no-data>
-              <v-alert :value="true" color="error" icon="warning">Sorry, nothing to display here :(</v-alert>
-            </template>
+            <!-- <template v-slot:no-data>
+              <v-alert :value="true" color="orange" icon="warning">Sorry, nothing to display here :(</v-alert>
+            </template> -->
             <template v-slot:no-results>
               <v-alert
                 :value="true"
@@ -98,91 +99,11 @@ export default {
         },
         { text: "用户名", value: "calories" },
         { text: "内容", value: "fat" },
+        {text:'评论文章',value:'article'},
         { text: "评论时间", value: "carbs" },
         { text: "Action", value: "" }
       ],
-      comments: [
-        {
-          name: "Frozen Yogurt",
-          calories: 159,
-          fat: 6.0,
-          carbs: 24,
-          protein: 4.0,
-          iron: "1%"
-        },
-        {
-          name: "Ice cream sandwich",
-          calories: 237,
-          fat: 9.0,
-          carbs: 37,
-          protein: 4.3,
-          iron: "1%"
-        },
-        {
-          name: "Eclair",
-          calories: 262,
-          fat: 16.0,
-          carbs: 23,
-          protein: 6.0,
-          iron: "7%"
-        },
-        {
-          name: "Cupcake",
-          calories: 305,
-          fat: 3.7,
-          carbs: 67,
-          protein: 4.3,
-          iron: "8%"
-        },
-        {
-          name: "Gingerbread",
-          calories: 356,
-          fat: 16.0,
-          carbs: 49,
-          protein: 3.9,
-          iron: "16%"
-        },
-        {
-          name: "Jelly bean",
-          calories: 375,
-          fat: 0.0,
-          carbs: 94,
-          protein: 0.0,
-          iron: "0%"
-        },
-        {
-          name: "Lollipop",
-          calories: 392,
-          fat: 0.2,
-          carbs: 98,
-          protein: 0,
-          iron: "2%"
-        },
-        {
-          name: "Honeycomb",
-          calories: 408,
-          fat: 3.2,
-          carbs: 87,
-          protein: 6.5,
-          iron: "45%"
-        },
-        {
-          name: "Donut",
-          calories: 452,
-          fat: 25.0,
-          carbs: 51,
-          protein: 4.9,
-          iron: "22%"
-        },
-        {
-          name: "KitKat",
-          calories: 518,
-          fat: 26.0,
-          carbs: 65,
-          protein: 7,
-          iron: "6%"
-        }
-      ]
+      comments: []
     };
   },
   methods: {

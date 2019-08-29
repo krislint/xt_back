@@ -52,6 +52,7 @@
 <script>
 import NotificationList from "@/components/widgets/list/NotificationList"
 import Util from "@/util"
+import { Logout } from '@/api/toPost'
 export default {
   name: "AppToolbar",
   components: {
@@ -63,19 +64,19 @@ export default {
         {
           icon: "account_circle",
           href: "#",
-          title: "Profile",
+          title: "个人信息",
           click: this.handleProfile
         },
         {
           icon: "settings",
           href: "#",
-          title: "Settings",
+          title: "设置",
           click: this.handleSetting
         },
         {
           icon: "fullscreen_exit",
           href: "#",
-          title: "Logout",
+          title: "登出",
           click: this.handleLogut
         }
       ]
@@ -95,7 +96,19 @@ export default {
     },
     handleLogut() {
       //handle logout
-      this.$router.push('/auth/login')
+      Logout()
+      .then(res=>{
+        if (res.code==200){
+          this.$message({
+            message:'登出成功',
+            type:'success'
+          })
+          this.$store.commit("logout")
+          this.$router.push('/auth/login')
+        }
+      })
+      
+      
     },
     handleSetting() {
 

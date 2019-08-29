@@ -147,7 +147,7 @@ export default {
     },
     isImage(file) {
       return true
-      return this.imageMime.includes(file.photo_address)
+      // return this.imageMime.includes(file.photo_address)
     },
     mimeIcons(file) {
       return this.imageMime.includes(file.photo_address) ? "image" : "insert_drive_file"
@@ -181,6 +181,7 @@ export default {
               message:"上传异常",
               type:"error"
           })
+          console.log(error)
       })
     }
   }

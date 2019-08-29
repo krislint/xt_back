@@ -72,24 +72,7 @@ export default {
   data() {
     return {
       cities: [],
-      items: [
-        {
-          photo: "https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg",
-          id: 1
-        },
-        {
-          photo: "https://cdn.vuetifyjs.com/images/carousel/sky.jpg",
-          id: 2
-        },
-        {
-          photo: "https://cdn.vuetifyjs.com/images/carousel/bird.jpg",
-          id: 3
-        },
-        {
-          photo: "https://cdn.vuetifyjs.com/images/carousel/planet.jpg",
-          id: 4
-        }
-      ],
+      items: [],
       city_id: 14,
       fileinfo: "",
       dialog:false,
@@ -162,6 +145,7 @@ export default {
             message: "上传异常",
             type: "error"
           })
+          console.log(error)
         })
     }
   },

@@ -2,6 +2,7 @@
  * ECharts Vue Wrapper
  * Michael Wang
  */
+/* eslint-disable */
 import colors from "vuetify/es5/util/colors"
 import _object from "lodash/object"
 

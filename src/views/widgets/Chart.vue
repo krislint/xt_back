@@ -1,70 +1,14 @@
+/* eslint-disable */
 <template>
   <div id="social">
     <v-container grid-list-xl fluid>
       <v-layout row wrap>
-        <!-- mini chart -->
         <v-flex sm12>
-          <h4>Mini Chart</h4>
-        </v-flex>
-        <v-flex lg3 sm6>
-          <mini-chart
-            title="Monthly Sales"
-            sub-title="10%"
-            icon="trending_up"
-            :data="dataset.monthVisit"
-            :chart-color="color.blue.base"
-            type="bar"
-          >
-          </mini-chart>
-        </v-flex>
-        <v-flex lg3 sm6>
-          <mini-chart
-            title="Daily Visit"
-            sub-title="20%"
-            icon="trending_up"
-            :data="dataset.monthVisit"
-            :chart-color="color.green.base"
-            type="area"
-          >
-          </mini-chart>
-        </v-flex>
-        <v-flex lg3 sm6>
-          <v-card>
-            <v-card-text>
-              <div class="layout row ma-0 align-center justify-space-between">
-                <div class="text-box">
-                  <div class="subheading pb-2">Bounce Rate</div>
-                  <span class="grey--text">-10% <v-icon small color="green">trending_down</v-icon> </span>
-                </div>
-                <div class="chart">
-                  <v-progress-circular :size="60" :width="5" :rotate="360" :value="10" color="success">
-                    10
-                  </v-progress-circular>
-                </div>
-              </div>
-            </v-card-text>
-          </v-card>
-        </v-flex>
-        <v-flex lg3 sm6>
-          <mini-chart
-            title="Sales Trend"
-            sub-title="10%"
-            icon="trending_down"
-            :data="dataset.monthVisit"
-            :chart-color="color.red.base"
-            type="line"
-          >
-          </mini-chart>
-        </v-flex>
-      </v-layout>
-      <!-- box chart -->
-      <v-layout row wrap>
-        <v-flex sm12>
-          <h4>Box Chart</h4>
+          <h4>页面浏览情况</h4>
         </v-flex>
         <v-flex lg4 sm6 xs12>
           <box-chart
-            title="Page views"
+            title="月浏览"
             sub-title="10%"
             icon="trending_up"
             :data="dataset.monthVisit"
@@ -75,7 +19,7 @@
         </v-flex>
         <v-flex lg4 sm6 xs12>
           <box-chart
-            title="Monthly Sales"
+            title="周浏览"
             sub-title="10%"
             icon="trending_up"
             card-color="pink"
@@ -88,7 +32,7 @@
         <v-flex lg4 sm6 xs12>
           <box-chart
             card-color="indigo"
-            title="Page views"
+            title="日浏览"
             sub-title="10%"
             icon="trending_up"
             :data="dataset.monthVisit"
@@ -101,13 +45,13 @@
       <!-- complex chart -->
       <v-layout row wrap>
         <v-flex sm12>
-          <h4>Complex Chart</h4>
+          <h4>学生活跃度</h4>
         </v-flex>
         <v-flex lg4 sm12>
           <v-card dark color="green">
             <v-card-title>
               <div class="layout row ma-0">
-                <div class="subheading">Today</div>
+                <div class="subheading">一周前</div>
                 <v-spacer></v-spacer>
                 <div class="caption"><v-icon>trending_up</v-icon> 20%</div>
               </div>
@@ -154,7 +98,7 @@
           <v-card class="elevation-0 box-shadow" dark color="pink">
             <v-card-title>
               <div class="layout row ma-0">
-                <div class="subheading">Today</div>
+                <div class="subheading">本周</div>
                 <v-spacer></v-spacer>
                 <div class="caption"><v-icon>trending_up</v-icon> 20%</div>
               </div>
@@ -195,7 +139,7 @@
           <v-card color="blue darken-1" dark>
             <v-card-title>
               <div class="layout row ma-0">
-                <div class="subheading">Today</div>
+                <div class="subheading">预计</div>
                 <v-spacer></v-spacer>
                 <div class="caption"><v-icon>trending_up</v-icon> 20%</div>
               </div>
@@ -236,7 +180,7 @@
           </v-card>
         </v-flex>
         <v-flex lg6 sm12 xs12>
-          <v-widget title="Analysis - Donut">
+          <v-widget title="区域统计">
             <div slot="widget-content">
               <e-chart
                 :path-option="[
@@ -268,11 +212,11 @@
           </v-widget>
         </v-flex>
         <v-flex lg6 sm12 xs12>
-          <v-widget title="Analysis - Pie">
+          <v-widget title="内容统计">
             <div slot="widget-content">
               <e-chart
                 :path-option="[
-                  ['dataset.source', dataset.campaign],
+                  ['dataset.source', dataset.pageData],
                   [
                     'color',
                     [
@@ -300,10 +244,7 @@
         <v-flex lg12 sm12>
           <v-tabs v-model="selectedTab" @change="handleTabChange">
             <v-tab ripple href="#tab-1">
-              Sales
-            </v-tab>
-            <v-tab ripple href="#tab-2">
-              Visit
+              浏览统计
             </v-tab>
             <v-tabs-items v-model="selectedTab">
               <v-tab-item value="tab-1" class="d-block">
@@ -321,16 +262,7 @@
                   </e-chart>
                 </v-card>
               </v-tab-item>
-              <v-tab-item value="tab-2">
-                <v-card>
-                  <e-chart
-                    :path-option="[['dataset.source', dataset.monthVisit], ['series[0].type', 'line']]"
-                    height="350px"
-                    width="100%"
-                  >
-                  </e-chart>
-                </v-card>
-              </v-tab-item>
+              
             </v-tabs-items>
           </v-tabs>
         </v-flex>
@@ -341,7 +273,7 @@
 
 <script>
 import EChart from "@/components/chart/echart"
-import { StackData, SinData, monthVisitData, campaignData, locationData } from "@/api/chart"
+import { StackData, SinData, monthVisitData, campaignData, locationData,pageviewData } from "@/api/chart"
 import Material from "vuetify/es5/util/colors"
 import MiniChart from "@/components/widgets/chart/MiniChart"
 import BoxChart from "@/components/widgets/chart/BoxChart"
@@ -362,7 +294,8 @@ export default {
         monthVisit: monthVisitData,
         campaign: campaignData,
         location: locationData,
-        stackData: StackData
+        stackData: StackData,
+        pageData:pageviewData
       },
       color: Material
     }

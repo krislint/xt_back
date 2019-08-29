@@ -21,13 +21,13 @@
 export default {
   data() {
     return {
-      title: "Home",
+      title: "主页",
       breadcrumbs: [
       ]
     }
   },
   watch: {
-    '$route.path': function (newVal) {
+    '$route.path': function () {
       this.computeBreadcrumbs()
     }
   },
@@ -35,7 +35,7 @@ export default {
     computeBreadcrumbs () {
       let  breadcrumbs = [
         {
-          text: "Home",
+          text: "主页",
           href: "/",
           disabled: false
         }

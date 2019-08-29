@@ -119,7 +119,7 @@ export default {
         }
         SetArticle(datas)
           .then(res => {
-            this.$message.success(res.msg)
+            this.$message.success('保存成功')
           })
           .catch(error => {
             console.log(error)
@@ -137,6 +137,7 @@ export default {
           .then(res => {
             if (res.code == 200) {
               this.$message({ message: "添加文章成功", type: "success" })
+              this.$router.push('/Article/Admin')
             } else {
               this.$message({ message: res.msg, type: "error" })
             }

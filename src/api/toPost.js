@@ -47,6 +47,13 @@ export function Login(datas) {
   })
 }
 
+export function Logout() {
+  return request({
+    url: "/auth/logout",
+    method: "POST"
+  })
+}
+
 export function EditorPPT(datas) {
   return request({
     url: "/admin/EditorPPT",
@@ -66,6 +73,14 @@ export function SetLantern(datas) {
 export function DeleteComment(datas) {
   return request({
     url: "/admin/delete_comment",
+    method: "POST",
+    data: datas
+  })
+}
+
+export function DeleteAriticle(datas) {
+  return request({
+    url: "/admin/delete_ariticle",
     method: "POST",
     data: datas
   })
