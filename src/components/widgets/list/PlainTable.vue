@@ -1,7 +1,7 @@
 <template>
   <v-card>
     <v-toolbar card dense color="transparent">
-      <v-toolbar-title><h4>Project</h4></v-toolbar-title>
+      <v-toolbar-title><h4>最近文章</h4></v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn icon>
         <v-icon>more_vert</v-icon>
@@ -10,19 +10,17 @@
     <v-divider></v-divider>
     <v-card-text class="pa-0">
       <template>
-        <v-data-table :headers="headers" :items="projects" hide-actions class="elevation-0">
+        <v-data-table :headers="headers" :items="articles" hide-actions class="elevation-0">
           <template slot="items" slot-scope="props">
             <td>
-              <v-avatar size="36px">
-                <img :src="props.item.avatar" :alt="props.item.username" />
-              </v-avatar>
+              {{props.item.id}}
             </td>
-            <td>{{ props.item.name }}</td>
-            <td class="text-xs-left">{{ props.item.deadline }}</td>
-            <td class="text-xs-left">
-              <v-progress-linear :value="props.item.progress" height="5" :color="props.item.color"></v-progress-linear>
+            <td>{{ props.item.title }}</td>
+            <td >{{ props.item.likenum }}</td>
+            <td >
+              {{props.item.commentnum}}
             </td>
-            <td class="text-xs-right">
+            <td >
               <v-btn flat icon color="grey">
                 <v-icon>edit</v-icon>
               </v-btn>
@@ -39,32 +37,44 @@
 </template>
 
 <script>
-import { Projects } from "@/api/project"
+import { last_article } from "@/api/toGet"
 export default {
   data() {
     return {
       headers: [
         {
-          text: "",
+          text: "#",
           align: "center",
           sortable: false,
           value: "avatar"
         },
         {
-          text: "Name",
+          text: "文章标题",
           align: "left",
           value: "name"
         },
-        { text: "Deadline", value: "deadline" },
-        { text: "Progress", value: "progress" },
-        { text: "Action", value: "action", align: "right" }
-      ]
+        { text: "点赞数", value: "deadline" },
+        { text: "评论数", value: "progress" },
+        { text: "Action", value: "action" }
+      ],
+      articles:[]
+      
     }
   },
-  computed: {
-    projects() {
-      return Projects
+  methods:{
+    get_article(){
+      last_article()
+      .then(res=>{
+        this.articles = res.data;
+      })
+      .catch(error=>{
+        console.log(error)
+      })
     }
+
+  },
+  created(){
+    this.get_article()
   }
 }
 </script>

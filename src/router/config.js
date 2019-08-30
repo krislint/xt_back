@@ -68,13 +68,13 @@ export const protectedRoute = [
         path: "/Article/Admin",
         name: "ArticleAdmin",
         meta: { title: "文章管理" },
-        component: () => import(/* webpackChunkName: "table" */ "@/views/Article.vue")
+        component: () => import(/* webpackChunkName: "Article" */ "@/views/Article.vue")
       },
       {
         path: "/Article/:id",
         name: "ArticleEditor",
         meta: { title: "文章编辑" },
-        component: () => import(/* webpackChunkName: "table" */ "@/views/ArticleEditor.vue")
+        component: () => import(/* webpackChunkName: "Article" */ "@/views/ArticleEditor.vue")
       }
     ]
   },
@@ -89,7 +89,7 @@ export const protectedRoute = [
         path: "/Lantern/Admin",
         name: "LanternAdmin",
         meta: { title: "轮播图管理" },
-        component: () => import(/* webpackChunkName: "chart-widget" */ "@/views/Lantern.vue")
+        component: () => import(/* webpackChunkName: "Lantern" */ "@/views/Lantern.vue")
       }
     ]
   },
@@ -104,13 +104,7 @@ export const protectedRoute = [
         path: "/User/Admin",
         name: "UserAdmin",
         meta: { title: "用户管理" },
-        component: () => import(/* webpackChunkName: "table" */ "@/views/User.vue")
-      },
-      {
-        path: "/User/:id",
-        name: "UserEditor",
-        meta: { title: "用户编辑" },
-        component: () => import(/* webpackChunkName: "table" */ "@/views/ArticleEditor.vue")
+        component: () => import(/* webpackChunkName: "User" */ "@/views/User.vue")
       }
     ]
   },
@@ -125,7 +119,7 @@ export const protectedRoute = [
         path: "/Comment/Admin",
         name: "CommentAdmin",
         meta: { title: "评论管理" },
-        component: () => import(/* webpackChunkName: "chart-widget" */ "@/views/Comment.vue")
+        component: () => import(/* webpackChunkName: "Comment" */ "@/views/Comment.vue")
       }
     ]
   },
@@ -140,7 +134,7 @@ export const protectedRoute = [
         path: "/widgets/chart",
         name: "ChartWidget",
         meta: { title: "图表" },
-        component: () => import(/* webpackChunkName: "chart-widget" */ "@/views/widgets/Chart.vue")
+        component: () => import(/* webpackChunkName: "Chart" */ "@/views/widgets/Chart.vue")
       }
     ]
   },
@@ -157,13 +151,13 @@ export const protectedRoute = [
         path: "/Media/Images",
         name: "MediaImages",
         meta: { title: "图片管理" },
-        component: () => import(/* webpackChunkName: "chart-widget" */ "@/views/Images.vue")
+        component: () => import(/* webpackChunkName: "IMage" */ "@/views/Images.vue")
       },
       {
         path: "/Media/PPT",
         name: "MediaPPT",
         meta: { title: "PPT 管理" },
-        component: () => import(/* webpackChunkName: "list-widget" */ "@/views/PPT.vue")
+        component: () => import(/* webpackChunkName: "PPT" */ "@/views/PPT.vue")
       }
     ]
   },
@@ -179,7 +173,7 @@ export const protectedRoute = [
         path: "/ClassRoom/Admin",
         name: "ClassRoomAdmin",
         meta: { title: "班级管理" },
-        component: () => import(/* webpackChunkName: "chart-widget" */ "@/views/ClassRoom.vue")
+        component: () => import(/* webpackChunkName: "ClassRoom" */ "@/views/ClassRoom.vue")
       }
     ]
   }

@@ -23,6 +23,24 @@
             </template>
           </v-combobox>
         </v-flex>
+        <v-flex>
+          <v-toolbar card color="white">
+            <v-text-field
+              flat
+              solo
+              prepend-icon="search"
+              placeholder="搜索"
+              v-model="search"
+              hide-details
+              class="hidden-sm-and-down"
+              @keyup.enter.native="getList"
+            ></v-text-field>
+            <v-btn icon @click="getList">
+              <v-icon>fa fa-search</v-icon>
+            </v-btn>
+          </v-toolbar>
+          <v-divider></v-divider>
+        </v-flex>
         <v-flex lg12 sm12 xs12>
           <post-list-card :items="posts" @delarticle="delete_ariticle"></post-list-card>
         </v-flex>
@@ -43,6 +61,7 @@ import { article_list } from "@/api/post.js";
 export default {
   data() {
     return {
+      search:'',
       current_page: 1,
       totoal: 1,
       pagenum: 12,
@@ -60,7 +79,8 @@ export default {
       let datas = {
         city_id: this.chips.id,
         page: this.current_page,
-        pagenum: this.pagenum
+        pagenum: this.pagenum,
+        keyword:this.search,
       };
       article_list(datas)
         .then(res => {
@@ -84,7 +104,9 @@ export default {
   },
   watch:{
     'chips.id':function(){
+      this.current_page = 1
       this.getList()
+      
     }
   },
   components: {

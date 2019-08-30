@@ -121,13 +121,16 @@ export default {
             });
           }
           this.loading = false;
+          this.vcode = this.vcode +'?'
         })
         .catch(error => {
           // this.$message({
           //   message: "登入异常",
           //   type: "error"
           // })
+          console.log(error)
           this.loading = false;
+          this.vcode = this.vcode +'?'
         });
     }
   },

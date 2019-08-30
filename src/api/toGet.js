@@ -95,3 +95,17 @@ export function GetUserInfo(datas) {
     params:datas
   })
 }
+
+export function last_comment() {
+  return request({
+    url: "/admin/last_comment",
+    method: "get",
+  })
+}
+
+export function last_article() {
+  return request({
+    url: "/admin/last_article",
+    method: "get",
+  })
+}
