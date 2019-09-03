@@ -7,6 +7,7 @@
         <v-select :items="cities" label="城市" item-text="name" item-value="id" v-model="city_id"></v-select>
         <v-select :items="ccs" label="分类" item-text="name" item-value="id" v-model="cc_id"></v-select>
         <v-select :items="ppts" label="ppt" v-model="ppt_id" item-text="title" item-value="id"></v-select>
+        <v-text-field v-model="video" label="视频地址" placeholder="绝对路径或者上传后获取的文件名"></v-text-field>
       </v-flex>
       <v-flex xs10>
         <v-text-field label="图片上传" v-model="short_img"></v-text-field>
@@ -65,7 +66,8 @@ export default {
       ccs: [],
       short_img: "",
       ppt_id:0,
-      ppts:[]
+      ppts:[],
+      video:""
     }
   },
   components: {
@@ -102,7 +104,8 @@ export default {
         this.tags = res.data.tag
         this.cc_id = res.data.ccid
         this.short_img = res.data.imgSrc
-        this.ppt_id =res.data.ppt_id
+        this.ppt_id =res.data.ppt_id,
+        this.video = res.data.viedo;
       })
     },
     save_article() {
@@ -115,11 +118,13 @@ export default {
           city_id: this.city_id,
           ccid: this.cc_id,
           imgSrc: this.short_img,
-          ppt_id:this.ppt_id
+          ppt_id:this.ppt_id,
+          viedo:this.video
         }
         SetArticle(datas)
           .then(res => {
-            this.$message.success('保存成功')
+            if (res.code ==200)
+              this.$message.success('保存成功')
           })
           .catch(error => {
             console.log(error)

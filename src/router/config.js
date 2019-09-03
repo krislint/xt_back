@@ -142,7 +142,7 @@ export const protectedRoute = [
   //media
   {
     path: "/Media",
-    meta: { title: "Media", group: "media", icon: "media" },
+    meta: { title: "媒体", group: "media", icon: "media" },
     name: "Media",
     component: DefaultLayout,
     redirect: "/Media/photo",

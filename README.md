@@ -1,5 +1,7 @@
 # back of xtwh
 
+backend url [后端地址](https://dev.tencent.com/u/wheboy/p/xtwh-backend)
+
 ## Project setup
 ```
 yarn install

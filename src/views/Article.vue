@@ -42,7 +42,9 @@
           <v-divider></v-divider>
         </v-flex>
         <v-flex lg12 sm12 xs12>
+          <keep-alive>
           <post-list-card :items="posts" @delarticle="delete_ariticle"></post-list-card>
+          </keep-alive>
         </v-flex>
       </v-layout>
       <div class="text-xs-center">

@@ -39,14 +39,7 @@ const Menu = [
     component: "widgets",
     icon: "widgets",
     items: [
-      // {
-      //   name: "statistic",
-      //   title: "Statistic",
-      //   badge: "new",
-      //   component: "StatisticWidget"
-      // },
       { name: "图标", title: "图表", component: "ChartWidget" ,icon: "chart" },
-      // { name: "list", title: "List", component: "ListWidget" }
     ]
   },
   { header: "媒体" },

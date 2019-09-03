@@ -24,6 +24,7 @@
     </v-toolbar>
     <v-divider></v-divider>
     <v-card-text class="pa-0">
+      
       <ul class="post--list flex-list vertical">
         <li class="post--item" v-for="(item, key) in items" :key="key">
           <router-link :to="`/Article/`+item.id" class=" post--link pa-4 layout row ma-0 text--primary">
@@ -61,14 +62,18 @@
                     <small>50+</small>
                   </a>
                 </v-flex>
-                <v-flex xs1>
-                  <v-icon small color='red'  @click.native.stop.prevent="dialog=true;delete_id=item.id">delete</v-icon>删除</v-flex>
+                <v-flex xs1 @click.native.prevent.stop="dialog=true;delete_id=item.id">
+                  <div >
+                  <v-icon small color='red' @click.native.stop.prevent="dialog=true;delete_id=item.id" >delete</v-icon>删除
+                  </div>
+                  </v-flex>
                 </v-layout>
               </div>
             </div>
           </router-link>
         </li>
       </ul>
+      
     </v-card-text>
   </v-card>
 </template>
