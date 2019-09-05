@@ -62,10 +62,10 @@
                     <small>50+</small>
                   </a>
                 </v-flex>
-                <v-flex xs1 @click.native.prevent.stop="dialog=true;delete_id=item.id">
-                  <div >
-                  <v-icon small color='red' @click.native.stop.prevent="dialog=true;delete_id=item.id" >delete</v-icon>删除
-                  </div>
+                <v-flex xs1>
+                  <v-btn  flat="flat" @click.stop.prevent="dialog=true;delete_id=item.id">
+                  <v-icon small color='red' >delete</v-icon>删除
+                  </v-btn>
                   </v-flex>
                 </v-layout>
               </div>

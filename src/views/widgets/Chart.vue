@@ -301,7 +301,7 @@ export default {
     }
   },
   created() {
-    console.log(this.$refs.chart)
+    // console.log(this.$refs.chart)
   },
   methods: {
     handleTabChange(val, e) {
