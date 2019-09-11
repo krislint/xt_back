@@ -323,6 +323,10 @@ export default {
         photo: this.ppt_img,
         file: this.ppt_address
       };
+      this.$message({
+            message: "上传中，请稍后在浏览",
+            type: "success"
+          });
       AddPPT(datas)
         .then(res => {
           this.files.push(res.data);
@@ -335,13 +339,6 @@ export default {
           this.ppt_img = "";
           this.ppt_address = "";
         })
-        .catch(error => {
-          console.log(error);
-          this.$message({
-            message: "未知错误",
-            type: "error"
-          });
-        });
       this.dialog = false;
     },
     eddppt() {
