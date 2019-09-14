@@ -39,7 +39,7 @@
         <v-select :items="cities" label="城市" item-text="name" item-value="id" v-model="city_id"></v-select>
       </v-flex>
 
-      <v-flex lg4 sm6 xs12 v-for="(item,i) in items" :key="i" style="padding:12px">
+      <v-flex lg4 sm6 xs12 v-for="(item,i) in items" :key="item.id" style="padding:12px">
         <!-- <v-card  >
           <v-card-text>
           <v-text-field v-model="items[i].photo" label="轮播图" placeholder="轮播图地址"></v-text-field>
@@ -76,7 +76,7 @@
 </template>
 
 <script>
-import { Lantern, GetCities, ShortAriticle } from "@/api/toGet";
+import { Lantern, GetCities } from "@/api/toGet";
 import { SetLantern, Upload2 } from "@/api/toPost";
 import LanternCard from "@/components/LanternCard.vue";
 export default {
@@ -87,7 +87,8 @@ export default {
       city_id: 14,
       fileinfo: "",
       dialog: false,
-      ariticles: []
+      ariticles: [],
+      cnt:1
     };
   },
   components: {
@@ -113,7 +114,7 @@ export default {
       }
     },
     addlantern() {
-      this.items.push({ article_id: 0, photo: "", id: 0 });
+      this.items.push({ article_id: 0, photo: "", id: - (this.cnt++) });
     },
     savelanterns() {
       let datas = {
@@ -132,11 +133,6 @@ export default {
         .catch(error => {
           console.log(error);
         });
-    },
-    getArticles() {
-      ShortAriticle({ city_id: this.city_id }).then(res => {
-        this.ariticles = res.data;
-      });
     },
     deletecard(index) {
       this.items.splice(index, 1);
@@ -165,12 +161,11 @@ export default {
   created() {
     this.getcity();
     this.getlantern();
-    this.getArticles();
+
   },
   watch: {
     city_id: function() {
       this.getlantern();
-      this.getArticles();
     }
   }
 };

@@ -101,7 +101,6 @@ export default {
     }
   },
   created() {
-      console.log("我被创建啦")
     this.photo_copy = this.photo_address;
     this.ariticle_id_copy = this.article_id;
     this.info.city_id_copy = this.city_id;
