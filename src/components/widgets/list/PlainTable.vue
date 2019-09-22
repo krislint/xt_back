@@ -55,7 +55,7 @@ export default {
         },
         { text: "点赞数", value: "deadline" },
         { text: "评论数", value: "progress" },
-        { text: "Action", value: "action" }
+        { text: "操作", value: "action" }
       ],
       articles:[]
       

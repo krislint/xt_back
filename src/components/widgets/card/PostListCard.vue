@@ -63,7 +63,7 @@
                   </a>
                 </v-flex>
                 <v-flex xs1>
-                  <v-btn  flat="flat" @click.stop.prevent="dialog=true;delete_id=item.id">
+                  <v-btn  flat="flat" @click.stop.prevent="dialog=true;delete_id=item.id" style="position: relative;top: -14px;">
                   <v-icon small color='red' >delete</v-icon>删除
                   </v-btn>
                   </v-flex>

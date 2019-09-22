@@ -66,7 +66,7 @@
       </v-form>
     </v-card-text>
     <div class="login-btn">
-      <v-btn icon>
+      <!-- <v-btn icon>
         <v-icon color="blue">fa fab fa-telegram fa-lg</v-icon>
       </v-btn>
       <v-btn icon>
@@ -74,7 +74,7 @@
       </v-btn>
       <v-btn icon>
         <v-icon color="light-blue">fa fa-google fa-lg</v-icon>
-      </v-btn>
+      </v-btn> -->
       <v-spacer></v-spacer>
       <v-btn block color="primary" @click="login" :loading="loading">Login</v-btn>
     </div>
