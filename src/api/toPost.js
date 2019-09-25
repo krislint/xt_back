@@ -85,3 +85,11 @@ export function DeleteAriticle(datas) {
     data: datas
   })
 }
+
+export function SetTuji(datas) {
+  return request({
+    url: "/admin/tuji",
+    method: "POST",
+    data: datas
+  })
+}

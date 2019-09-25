@@ -109,3 +109,10 @@ export function last_article() {
     method: "get",
   })
 }
+export function GetTuji(datas) {
+  return request({
+    url: "/admin/tuji",
+    method: "get",
+    params:datas
+  })
+}

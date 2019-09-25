@@ -1,5 +1,53 @@
 <template>
   <div id="media" class="media">
+    <v-dialog v-model="dialog" persistent max-width="750px">
+        <template v-slot:activator="{ on }">
+          <!-- <v-btn color="primary" dark v-on="on">Open Dialog</v-btn> -->
+        </template>
+        <v-card>
+          <v-card-title>
+            <span class="headline">选择文章</span>
+          </v-card-title>
+          <v-card-text>
+            <v-container grid-list-md>
+              <v-layout wrap>
+                <v-select
+        :items="city_list"
+        label="地区"
+        placeholder="地区"
+        v-model="card.city_id"
+        item-text="name"
+        item-value="id"
+      ></v-select>
+      <v-select
+        :items="card.cc_list"
+        label="分类"
+        placeholder="分类"
+        v-model="card.cc_id"
+        item-text="name"
+        item-value="id"
+      ></v-select>
+      
+      <v-select
+        :items="card.ariticle_list"
+        label="文章"
+        placeholder="文章"
+        v-model="card.article_id"
+        item-text="title"
+        item-value="id"
+      ></v-select>
+               
+              </v-layout>
+            </v-container>
+            <small>*indicates required field</small>
+          </v-card-text>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn color="blue darken-1" flat @click="dialog = false">关闭</v-btn>
+            <v-btn color="blue darken-1" flat @click="setPhoto">确定</v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
     <v-toolbar class="elevation-0 transparent media-toolbar">
       
         <v-btn flat @click="handlerCilik" >
@@ -82,7 +130,8 @@ import Bytes from "bytes"
 import { getFileMenu } from "@/api/file"
 import { GetImages } from "@/api/toGet.js"
 import VuePerfectScrollbar from "vue-perfect-scrollbar"
-import { Uploads } from "@/api/toPost.js"
+import { Uploads,SetTuji } from "@/api/toPost.js"
+import { ShortAriticle, GetCategory,GetTuji,GetCities } from "@/api/toGet";
 export default {
   components: {
     VuePerfectScrollbar
@@ -94,8 +143,19 @@ export default {
     }
   },
   data: () => ({
+    city_list:[],
+    card:{
+      article_id:0,
+      city_id:14,
+      cc_id:0,
+      ariticle_list:[],
+      cc_list:[],
+      
+    },
+    current_photo:0,
     size: "lg",
     view: "grid",
+    dialog:false,
     selectedFile: {
       path: "/static/icon/empty_file.svg"
     },
@@ -122,10 +182,35 @@ export default {
     }
   },
   created() {
-    this.getfiles()
+    this.getfiles();
+    this.getCity();
+    this.get_cc_list();
+    this.get_ariticle_list();
   },
 
   methods: {
+    setPhoto(){
+      let datas={
+        photo_id:this.current_photo,
+        article_id:this.card.article_id
+      }
+      SetTuji(datas)
+      .then(res=>{
+        if (res.code==200){
+          this.$message({
+            message:"设置成功",
+            type:"success"
+          })
+        }
+      })
+      .catch(error=>{
+        this.$message({
+          message:error,
+          type:"error"
+        })
+      })
+    this.dialog=false;
+    },
     getfiles() {
       GetImages()
         .then(res => {
@@ -152,8 +237,17 @@ export default {
     mimeIcons(file) {
       return this.imageMime.includes(file.photo_address) ? "image" : "insert_drive_file"
     },
-    showDetail(file) {
-      this.selectedFile = file
+    showDetail(item) {
+      let datas={
+        photo_id : item.id
+      }
+      this.current_photo= item.id;
+      GetTuji(datas)
+      .then(res=>{
+        this.card.article_id = res.data.article_id;
+        this.card.city_id=14;
+      })
+      this.dialog=true;
     },
     fileSize(number) {
       return Bytes.format(number)
@@ -183,6 +277,49 @@ export default {
           })
           console.log(error)
       })
+    },
+    getCity(){
+      GetCities()
+      .then(res=>{
+        this.city_list = res.data;
+      })
+    },
+    get_ariticle_list() {
+        let datas = {
+        city_id: this.card.city_id,
+        cc_id: this.card.cc_id
+      };
+        ShortAriticle(datas)
+        .then(res => {
+          this.card.ariticle_list = res.data;
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
+    get_cc_list(){
+        let datas={
+            city_id:this.card.city_id
+        };
+        GetCategory(datas)
+        .then(res=>{
+            this.card.cc_list = res.data;
+        });
+    }
+  },
+  watch:{
+    'card.city_id':{
+      handler:function(){
+        this.get_cc_list();
+        this.get_ariticle_list();
+      },
+      deep:true
+    },
+    "card.cc_id":{
+        handler:function(){
+            this.get_ariticle_list();
+        },
+        deep:false
     }
   }
 }
