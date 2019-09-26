@@ -101,7 +101,7 @@ export default {
         { text: "内容", value: "fat" },
         {text:'评论文章',value:'article'},
         { text: "评论时间", value: "carbs" },
-        { text: "Action", value: "" }
+        { text: "操作", value: "" }
       ],
       comments: []
     };

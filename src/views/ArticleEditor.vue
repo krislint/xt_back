@@ -13,7 +13,7 @@
         <v-text-field label="图片上传" v-model="short_img"></v-text-field>
 
         <v-btn flat @click="handlerCilik">
-          <v-icon color="primary">cloud_upload</v-icon>&nbsp;Upload
+          <v-icon color="primary">cloud_upload</v-icon>&nbsp;上传图片
         </v-btn>
         <input
           type="file"

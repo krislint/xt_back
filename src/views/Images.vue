@@ -39,7 +39,7 @@
                
               </v-layout>
             </v-container>
-            <small>*indicates required field</small>
+            <!-- <small>*indicates required field</small> -->
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
@@ -51,7 +51,7 @@
     <v-toolbar class="elevation-0 transparent media-toolbar">
       
         <v-btn flat @click="handlerCilik" >
-          <v-icon color="primary" >cloud_upload</v-icon>&nbsp;Upload
+          <v-icon color="primary" >cloud_upload</v-icon>&nbsp;上传图片
         </v-btn>
       
       <input type="file" id="upload" ref="upload" @change="changeimg" accept=".jpg, .jpeg, .png" v-show="false" />

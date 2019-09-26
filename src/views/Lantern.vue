@@ -8,7 +8,7 @@
       </v-flex>
       <v-flex xs12 offset-xs5>
         <v-btn flat @click="handlerCilik">
-          <v-icon color="primary">cloud_upload</v-icon>&nbsp;Upload
+          <v-icon color="primary">cloud_upload</v-icon>&nbsp;上传图片
         </v-btn>
 
         <input

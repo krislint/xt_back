@@ -76,7 +76,7 @@
         <v-icon color="light-blue">fa fa-google fa-lg</v-icon>
       </v-btn> -->
       <v-spacer></v-spacer>
-      <v-btn block color="primary" @click="login" :loading="loading">Login</v-btn>
+      <v-btn block color="primary" @click="login" :loading="loading">登入</v-btn>
     </div>
   </v-card>
 </template>

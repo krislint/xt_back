@@ -81,13 +81,13 @@
             <v-card-text class="white">
               <div class="layout row align-center ma-0">
                 <div class="grey--text">
-                  <div class="caption">MAXIMUM BOUNCE</div>
-                  <div class="subheading mt-2">2500</div>
+                  <div class="caption">最大浏览</div>
+                  <div class="subheading mt-2">2800</div>
                 </div>
                 <v-spacer></v-spacer>
                 <div class="">
-                  <v-progress-circular :size="100" :width="15" :rotate="360" :value="10" color="blue">
-                    10
+                  <v-progress-circular :size="100" :width="15" :rotate="360" :value="35" color="blue">
+                    35
                   </v-progress-circular>
                 </div>
               </div>
@@ -122,13 +122,13 @@
             <v-card-text class="white">
               <div class="layout row align-center ma-0">
                 <div class="grey--text">
-                  <div class="caption">MAXIMUM BOUNCE</div>
-                  <div class="subheading mt-2">2500</div>
+                  <div class="caption"> 最大浏览</div>
+                  <div class="subheading mt-2">2200</div>
                 </div>
                 <v-spacer></v-spacer>
                 <div class="">
-                  <v-progress-circular :size="100" :width="15" :rotate="360" :value="10" color="blue">
-                    10
+                  <v-progress-circular :size="100" :width="15" :rotate="360" :value="25" color="blue">
+                    25
                   </v-progress-circular>
                 </div>
               </div>
@@ -166,13 +166,13 @@
             <v-card-text class="white">
               <div class="layout row align-center ma-0">
                 <div class="grey--text">
-                  <div class="caption">MAXIMUM BOUNCE</div>
-                  <div class="subheading mt-2">2500</div>
+                  <div class="caption">最大浏览</div>
+                  <div class="subheading mt-2">1500</div>
                 </div>
                 <v-spacer></v-spacer>
                 <div class="">
-                  <v-progress-circular :size="100" :width="15" :rotate="360" :value="10" color="blue">
-                    10
+                  <v-progress-circular :size="100" :width="15" :rotate="360" :value="16" color="blue">
+                    16
                   </v-progress-circular>
                 </div>
               </div>

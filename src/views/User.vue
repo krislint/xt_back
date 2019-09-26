@@ -116,7 +116,7 @@ export default {
         { text: "账户", value: "account" },
         { text: "身份", value: "role" },
         { text: "介绍", value: "intro" },
-        { text: "Action", value: "" }
+        { text: "操作", value: "" }
       ],
       search: ""
     };

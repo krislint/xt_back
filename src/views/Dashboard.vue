@@ -17,7 +17,7 @@
         </v-flex>
         <v-flex lg4 sm12 xs12>
           <linear-statistic
-            title="views"
+            title="浏览"
             sub-title="浏览 增长"
             icon="trending_up"
             color="success"
@@ -33,7 +33,7 @@
           ></linear-statistic>
           <linear-statistic
             class="my-4"
-            title="Comment"
+            title="评论"
             sub-title="评论 增长"
             icon="trending_up"
             color="primary"
@@ -41,7 +41,7 @@
           ></linear-statistic>
           <linear-statistic
             class="my-4"
-            title="User"
+            title="用户"
             sub-title="用户增长"
             icon="trending_up"
             color="primary"
